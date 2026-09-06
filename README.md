@@ -8,6 +8,7 @@
 
 | Модуль | Качество | Глобальный поиск | Особые требования |
 |--------|----------|------------------|--------------------|
+| [**FanCDN.2.0**](./FanCDN.2.0/) | `~ 1080p` | Нет отдельного `with_search` | **Cookie FanSeries + Playwright** |
 | [**Kinobadi**](./Kinobadi/) | `~ 1080p` | Да | — |
 | [**Krasview**](./Krasview/) | `~ 1080p` | Нет отдельного `with_search` | — |
 | [**Tevas**](./Tevas/) | `~ 720p` | Да | **Нужен прокси с IP РФ** |
@@ -28,6 +29,7 @@ module/repository.yaml
 - repository: https://github.com/ivzaislu/lampac-modules
   branch: main
   modules:
+    - FanCDN.2.0
     - Kinobadi
     - Krasview
     - Tevas
@@ -39,13 +41,13 @@ module/repository.yaml
 
 ### Установить только отдельные модули
 
-В `modules:` можно оставить только нужные каталоги. Например, только Kinobadi:
+В `modules:` можно оставить только нужные каталоги. Например, только FanCDN.2.0:
 
 ```yaml
 - repository: https://github.com/ivzaislu/lampac-modules
   branch: main
   modules:
-    - Kinobadi
+    - FanCDN.2.0
 ```
 
 ### Установить все модули репозитория
@@ -63,11 +65,31 @@ module/repository.yaml
 
 Параметры модулей переопределяются в `init.conf`. Имена секций совпадают с именами модулей:
 
+- `FanCDN.2.0`
 - `Kinobadi`
 - `Krasview`
 - `Tevas`
 
 Дефолтные параметры и маршруты описаны в README каждого модуля.
+
+### FanCDN.2.0
+
+Для **FanCDN.2.0** нужны авторизованная cookie FanSeries и включённый Playwright. Модуль по умолчанию выключен, поэтому его нужно включить в `init.conf`:
+
+```json
+"FanCDN.2.0": {
+  "enable": true,
+  "cookie": "dle_user_id=<value>; dle_password=<value>"
+}
+```
+
+Не публикуйте реальные значения cookie.
+
+Маршрут модуля:
+
+```text
+/lite/fancdn.2.0
+```
 
 ### Tevas и прокси
 
@@ -77,6 +99,10 @@ module/repository.yaml
 
 ```text
 lampac-modules/
+├── FanCDN.2.0/
+│   ├── README.md
+│   ├── manifest.json
+│   └── ...
 ├── Kinobadi/
 │   ├── README.md
 │   ├── manifest.json

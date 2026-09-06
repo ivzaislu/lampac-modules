@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>library</OutputType>
+    <IsPackable>true</IsPackable>
+    <AssemblyName>FanCDN.2.0</AssemblyName>
+    <RootNamespace>FanCDN2_0</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Shared">
+      <HintPath>..\..\Shared.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
